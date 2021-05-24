@@ -1,23 +1,21 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { deleteStudent, getStudents } from '../api/api';
 
 const Students = ({ handleEdit }) => {
     const [students, setStudents] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/students/').then((res) => setStudents(res.data));
+        getStudents().then((res) => setStudents(res.data));
     }, [students]);
 
     const handleDelete = (id) => {
-        axios.delete('http://localhost:5000/deleteStudent/' + id).then((res) => {
-            console.log(res.data);
-        });
+        deleteStudent(id);
     };
 
     return (
         <div>
-            <table class='table table-bordered'>
+            <table className='table table-bordered'>
                 <thead>
                     <tr>
                         <th scope='col'>#</th>
@@ -38,10 +36,17 @@ const Students = ({ handleEdit }) => {
                             <td>{student.studying ? 'Yes' : 'No'}</td>
                             <td>
                                 <div className='btn-group'>
-                                    <Link to={'update-student/' + student._id} class='btn btn-primary' onClick={handleEdit}>
+                                    <Link
+                                        to={'update-student/' + student._id}
+                                        className='btn btn-primary'
+                                        onClick={handleEdit}
+                                    >
                                         Edit
                                     </Link>
-                                    <button class='btn btn-danger' onClick={() => handleDelete(student._id)}>
+                                    <button
+                                        className='btn btn-danger'
+                                        onClick={() => handleDelete(student._id)}
+                                    >
                                         Delete
                                     </button>
                                 </div>

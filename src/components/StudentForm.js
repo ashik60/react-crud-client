@@ -11,6 +11,8 @@ const StudentForm = ({ student, setStudent, handleSubmit }) => {
         setStudent({ ...student, [name]: checked });
     };
 
+    const btnText = student.name ? 'Update' : 'Add';
+
     return (
         <form className='border' onSubmit={handleSubmit}>
             <div className='form-group'>
@@ -26,22 +28,41 @@ const StudentForm = ({ student, setStudent, handleSubmit }) => {
             </div>
             <div className='form-group'>
                 <label htmlFor='class'>Class</label>
-                <select value={student.class} onChange={handleChange} className='form-control' name='class'>
+                <select
+                    value={student.class}
+                    onChange={handleChange}
+                    className='form-control'
+                    name='class'
+                >
                     <option value='8'>8</option>
                     <option value='9'>9</option>
                     <option value='10'>10</option>
                 </select>
             </div>
             <div className='form-group'>
-                <label htmlFor='gender'>Gender</label>
-                <div className='form-check form-check-inline' id='gender'>
-                    <input onChange={handleChange} className='form-check-input' type='radio' name='gender' value='male' />
-                    <label className='form-check-label' htmlFor='male'>
+                <label htmlFor='gender'>Gender: </label>
+                <div className='form-check form-check-inline ml-2' id='gender'>
+                    <input
+                        onChange={handleChange}
+                        className='form-check-input'
+                        type='radio'
+                        name='gender'
+                        value='Male'
+                        checked={student.gender === 'Male'}
+                    />
+                    <label className='form-check-label' htmlFor='Male'>
                         Male
                     </label>
                 </div>
                 <div className='form-check form-check-inline'>
-                    <input onChange={handleChange} className='form-check-input' type='radio' name='gender' value='female' />
+                    <input
+                        onChange={handleChange}
+                        className='form-check-input'
+                        type='radio'
+                        name='gender'
+                        value='Female'
+                        checked={student.gender === 'Female'}
+                    />
                     <label className='form-check-label' htmlFor='female'>
                         Female
                     </label>
@@ -58,7 +79,7 @@ const StudentForm = ({ student, setStudent, handleSubmit }) => {
                 <label className='form-check-label'>Current Student</label>
             </div>
             <button type='submit' className='btn btn-primary'>
-                {student._id ? 'Update Student' : 'Add Student'}
+                {btnText + ' Student'}
             </button>
         </form>
     );

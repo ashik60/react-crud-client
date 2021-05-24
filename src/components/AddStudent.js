@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useState } from 'react';
+import { addSudent } from '../api/api';
 import StudentForm from './StudentForm';
 
 const AddStudent = () => {
@@ -13,16 +13,16 @@ const AddStudent = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(student);
-        addStudent();
-    };
-
-    const addStudent = () => {
-        axios.post('http://localhost:5000/addStudent', student).then((res) => console.log(res));
+        addSudent(student);
     };
 
     return (
         <div>
-            <StudentForm handleSubmit={handleSubmit} student={student} setStudent={setStudent} />
+            <StudentForm
+                handleSubmit={handleSubmit}
+                student={student}
+                setStudent={setStudent}
+            />
         </div>
     );
 };
