@@ -1,6 +1,1 @@
--   Functional component based approach, no classes
--   Create Reusable components
--   Add, Edit, Delete 
--   MongoDB 
--   Implement node api using mongoose, use express js
--   Text field, radio, select, checkbox
+# React CRUD Frontend
